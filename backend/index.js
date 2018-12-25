@@ -18,7 +18,7 @@ server.use(restify.plugins.bodyParser());
 
 server.post('/adminize/all', async (req, res, next) => {
   try {
-    const all = await pool.query('SELECT brands.id, brands.name, products.name FROM brands INNER JOIN products ON products.brand_id = brands.id ORDER BY brands.name, products.name', (err, res) => {
+    const all = await pool.query('SELECT brands.id AS brand_id, brands.name AS brand_name, products.name AS product_name FROM brands INNER JOIN products ON products.brand_id = brands.id ORDER BY brands.name, products.name', (err, res) => {
       console.log(res.rows);
     });
     return next();
