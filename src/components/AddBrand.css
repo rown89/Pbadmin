@@ -3,15 +3,10 @@
   height: 100%;
   float: left;
   padding: 20px;
+  margin: auto;
 }
 
 .loadingContainer {
   display: table;
   margin: 0 auto;
-}
-
-
-.sweet-loading {
-  width: 100%;
-  height: 100%;
 }

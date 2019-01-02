@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from './components/Home';
 import Products from './components/Products';
 import Brands from './components/Brands';
+import AddBrand from './components/AddBrand'
 import "./App.css";
 
 class App extends Component {
@@ -23,7 +24,8 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/addProduct" component={Products} />
-            <Route path="/addBrands" component={Brands} />
+            <Route path="/Brands" component={Brands} />
+            <Route path="/AddBrands" component={AddBrand} />
           </Switch>
           <Footer />
           </div>

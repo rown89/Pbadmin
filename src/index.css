@@ -20,7 +20,7 @@ html, body {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box; /* Opera */
-	height: 100%;
+	background: #171E27;
 }
 
 *, *:before, *:after {
@@ -29,6 +29,7 @@ html, body {
 
 body {
 	line-height: 1;
+	overflow-y: scroll;
 }
 
 ol, ul {
@@ -69,28 +70,55 @@ header {
   width: 100%;
   position: relative;
   float: left;
-  background: #171E27;
 }
 
 nav {
 	width: 100%;
-	padding: 10px;
 	float: left;
   background: #202A37;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
+	font-weight: bold;
+	background-color: #202A37;
 }
 
-ul {
+nav ul {
 	width: 100%;
 	position: relative;
 	float: left;
-	padding-top: 10px;
-	padding-bottom: 10px;
 }
 
-li {
+nav ul li {
 	position: relative;
   float: left;
-  padding-right: 20px;
+	background-color: #202A37;
+}
+
+nav ul li a {
+	display: block;
+	padding: 22px 14px;
+	text-decoration: none;
+}
+
+nav ul li ul {
+	display: none;
+	position: absolute;
+	background-color: #202A37;
+	border-radius: 0px 0px 4px 4px;
+}
+
+nav ul li:hover ul {
+	display: block;
+}
+
+nav ul li ul li {
+	width: 180px;
+	padding: 8px;
+}
+
+nav ul li ul li a {
+	padding: 	8px 14px;
+}
+
+nav ul li ul li a:hover {
+	background-color: #2D959F;
 }
