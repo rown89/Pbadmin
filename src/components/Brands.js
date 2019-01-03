@@ -25,7 +25,11 @@ class Brands extends Component {
     })
       .then((response) => {
         const dataMap = response.data.map(item => {
-          const dataRemap = { brandid: item.brandid, brandname: item.brandname, brandimage: item.brandimage };
+          const dataRemap = {
+            brandid: item.brandid,
+            brandname: item.brandname,
+            brandimage: item.brandimage
+          };
           return dataRemap
         })
         this.setState({
@@ -40,7 +44,7 @@ class Brands extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className='container'>
         <div className='sweet-loading'>
           <BeatLoader
             className={override}

@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Products from './components/Products';
 import Brands from './components/Brands';
 import AddBrand from './components/AddBrand'
+import AddProduct from './components/AddProduct'
 import "./App.css";
 
 class App extends Component {
@@ -23,9 +24,10 @@ class App extends Component {
           <Navigator />
           <Switch>
             <Route path="/" component={Home} exact />
-            <Route path="/addProduct" component={Products} />
+            <Route path="/Product" component={Products} />
+            <Route path="/AddProduct" component={AddProduct} />
             <Route path="/Brands" component={Brands} />
-            <Route path="/AddBrands" component={AddBrand} />
+            <Route path="/AddBrand" component={AddBrand} />
           </Switch>
           <Footer />
           </div>

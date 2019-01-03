@@ -44,11 +44,20 @@ server.post('/adminize/brands', async (req, res, next) => {
   }
 });
 
+server.post('/adminize/addBrand', async (req, res, next) => {
+  try {
+    const brands = await pool.query(`INSERT INTO brands(name, image) VALUES ('${req.body.name}', '${req.body.image}')`);
+    res.send({msg: 'added'});
+    return next();
+  } catch (err) {
+    console.log(err.stack)
+  }
+});
+
 server.post('/adminize/products', async (req, res, next) => {
   try {
-    const products = await pool.query('SELECT * FROM products', (err, res) => {
-      console.log(products.rows);
-    });
+    const all = await pool.query('SELECT products.id AS productid, products.name AS productname, products.image AS productimage, diets.name AS dietname, animals.name as animalname, types.name as typename FROM products INNER JOIN diets ON products.diet_id = diets.id INNER JOIN animals ON products.animal_id = animals.id INNER JOIN types ON products.type_id = types.id');
+    res.send(all.rows);
     return next();
   } catch (err) {
     console.log(err.stack)

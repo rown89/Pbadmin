@@ -15,7 +15,13 @@ class Navigator extends Component {
               </li>
             </ul>
           </li>
-          <li><NavLink to='/addProduct'>PRODUCTS</NavLink></li>
+          <li><NavLink to='/Product'>PRODUCTS</NavLink>
+            <ul>
+              <li>
+                <NavLink to='/addProduct'>Add Product</NavLink>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
     )

@@ -25,7 +25,17 @@ class Home extends Component {
     })
       .then((response) => {
         const dataMap = response.data.map(item => {
-          const dataRemap = { brandid: item.brandid, productid: item.productid, brandname: item.brandname, productname: item.productname, productdiet: item.dietname, producttype: item.typename, productanimal: item.animalname, brandimage: item.brandimage, productimage: item.productimage };
+          const dataRemap = {
+            brandid: item.brandid,
+            productid: item.productid,
+            brandname: item.brandname,
+            productname: item.productname,
+            productdiet: item.dietname,
+            producttype: item.typename,
+            productanimal: item.animalname,
+            brandimage: item.brandimage,
+            productimage: item.productimage
+          };
           return dataRemap
         })
         this.setState({
@@ -53,7 +63,7 @@ class Home extends Component {
           />
         </div>
           <MaterialTable
-            title="All Products"
+            title="All Brands + Products"
             data={this.state.data}
             columns={[
               { title: 'Brand ID', field: 'brandid' },
