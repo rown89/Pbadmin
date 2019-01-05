@@ -7,12 +7,12 @@ class AddProduct extends Component {
     super(props);
     this.state = {
       name: '',
-      brands: [], 
       puppy: false,
       cereal: false,
       weight: '',
       description: '',
       image: '',
+      brands: [], 
       diets: [],
       animals: [],
       types: [],
@@ -26,15 +26,8 @@ class AddProduct extends Component {
     axios.post('http://localhost:8080/adminize/animals',{
     })
     .then((response) => {
-      const reMap = response.data.map(item => {
-       const animals = {
-         animalID: item.animalid,
-         animalName: item.animalname,
-       }
-       return animals
-      })
       this.setState({
-        animals: reMap,
+        animals: response.data,
       })
     })
     .catch(err => console.log(err));
@@ -42,15 +35,8 @@ class AddProduct extends Component {
     axios.post('http://localhost:8080/adminize/brands',{
     })
     .then((response) => {
-      const reMap = response.data.map(item => {
-       const brand = {
-         brandID: item.brandid,
-         brandName: item.brandname,
-       }
-       return brand
-      })
       this.setState({
-        brands: reMap,
+        brands: response.data,
       })
     })
     .catch(err => console.log(err));
@@ -58,15 +44,8 @@ class AddProduct extends Component {
     axios.post('http://localhost:8080/adminize/diets',{
     })
     .then((response) => {
-      const reMap = response.data.map(item => {
-       const diets = {
-         dietID: item.dietid,
-         dietName: item.dietname,
-        }
-       return diets
-      })
       this.setState({
-        diets: reMap,
+        diets: response.data,
       })
     })
     .catch(err => console.log(err));
@@ -74,15 +53,8 @@ class AddProduct extends Component {
     axios.post('http://localhost:8080/adminize/types',{
     })
     .then((response) => {
-      const reMap = response.data.map(item => {
-       const types = {
-        typeID: item.typeid,
-        typeName: item.typename,
-        }
-       return types
-      })
       this.setState({
-        types: reMap,
+        types: response.data,
       })
     })
     .catch(err => console.log(err));
@@ -143,32 +115,32 @@ class AddProduct extends Component {
               <p>Brand</p>
               <select>
                 {this.state.brands.map((item) => 
-                  <option value= {item.brandID} key={item.brandID}>
-                    {item.brandName}
+                  <option value= {item.brandid} key={item.brandid}>
+                    {item.brandname}
                   </option>
                 )}
               </select>
               <p>Animal</p>
               <select>
                 {this.state.animals.map((item) => 
-                  <option value= {item.animalID} key={item.animalID}>
-                    {item.animalName}
+                  <option value= {item.animalid} key={item.animalid}>
+                    {item.animalname}
                   </option>
                 )}
               </select>
               <p>Diet</p>
               <select>
                 {this.state.diets.map((item) => 
-                  <option value= {item.dietID} key={item.dietID}>
-                    {item.dietName}
+                  <option value= {item.dietid} key={item.dietid}>
+                    {item.dietname}
                   </option>
                 )}
               </select>
               <p>Type</p>
               <select>
                 {this.state.types.map((item) => 
-                  <option value= {item.typeID} key={item.typeID}>
-                    {item.typeName}
+                  <option value= {item.typeid} key={item.typeid}>
+                    {item.typename}
                   </option>
                 )}
               </select>
