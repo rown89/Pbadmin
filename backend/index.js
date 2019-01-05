@@ -26,18 +26,14 @@ server.use(cors.actual)
 
 server.post('/adminize/all', async (req, res, next) => {
   try {
-    const all = await pool.query('SELECT brands.id AS brandId, brands.name AS brandname, brands.image AS brandimage, products.id AS productid, products.name AS productname, products.image AS productimage, diets.name AS dietname, animals.name as animalname, types.name as typename FROM brands INNER JOIN products ON products.brand_id = brands.id INNER JOIN diets ON products.diet_id = diets.id INNER JOIN animals ON products.animal_id = animals.id INNER JOIN types ON products.type_id = types.id');
+    const all = await pool.query(
+      `SELECT brands.id AS brandId, brands.name AS brandname, brands.image AS brandimage, products.id AS productid, products.name AS productname, products.image AS productimage, diets.name AS dietname, animals.name AS animalname, types.name AS typename FROM brands 
+      INNER JOIN products ON products.brand_id = brands.id 
+      INNER JOIN diets ON products.diet_id = diets.id 
+      INNER JOIN animals ON products.animal_id = animals.id 
+      INNER JOIN types ON products.type_id = types.id`
+    );
     res.send(all.rows);
-    return next();
-  } catch (err) {
-    console.log(err.stack)
-  }
-});
-
-server.post('/adminize/brands', async (req, res, next) => {
-  try {
-    const brands = await pool.query('SELECT id AS brandID, name AS brandName, image as brandImage FROM brands');
-    res.send(brands.rows);
     return next();
   } catch (err) {
     console.log(err.stack)
@@ -54,10 +50,71 @@ server.post('/adminize/addBrand', async (req, res, next) => {
   }
 });
 
+server.post('/adminize/addProducts', async (req, res, next) => {
+  try {
+    const products = await pool.query(
+      `INSERT INTO products(
+        name, is_puppy, is_cereal_free, weight, description, image, brand_id, animal_id, diet_id, type_id
+      ) VALUES (
+        '${req.body.name}', '${req.body.puppy}', '${req.body.cereal}', '${req.body.weight}', '${req.body.description}', '${req.body.image}, '${req.body.brandID}', '${req.body.animalID}', '${req.body.dietID}', '${req.body.dietID}'
+      )`
+    );
+    res.send({msg: 'added'});
+    return next();
+  } catch (err) {
+    console.log(err.stack)
+  }
+});
+
+server.post('/adminize/animals', async (req, res, next) => {
+  try {
+    const animals = await pool.query('SELECT id AS animalID, name AS animalName FROM animals');
+    res.send(animals.rows);
+    return next();
+  } catch (err) {
+    console.log(err.stack)
+  }
+});
+
+server.post('/adminize/brands', async (req, res, next) => {
+  try {
+    const brands = await pool.query('SELECT id AS brandID, name AS brandName, image as brandImage FROM brands');
+    res.send(brands.rows);
+    return next();
+  } catch (err) {
+    console.log(err.stack)
+  }
+});
+
+server.post('/adminize/diets', async (req, res, next) => {
+  try {
+    const diets = await pool.query(`SELECT id AS dietID, name AS dietName FROM diets`);
+    res.send(diets.rows);
+    return next();
+  } catch (err) {
+    console.log(err.stack)
+  }
+});
+
 server.post('/adminize/products', async (req, res, next) => {
   try {
-    const all = await pool.query('SELECT products.id AS productid, products.name AS productname, products.image AS productimage, diets.name AS dietname, animals.name as animalname, types.name as typename FROM products INNER JOIN diets ON products.diet_id = diets.id INNER JOIN animals ON products.animal_id = animals.id INNER JOIN types ON products.type_id = types.id');
-    res.send(all.rows);
+    const products = await pool.query(
+      `SELECT products.id AS productid, products.name AS productname, products.image AS productimage, diets.name AS dietname, animals.name as animalname, types.name as typename FROM products 
+      INNER JOIN diets ON products.diet_id = diets.id 
+      INNER JOIN animals ON products.animal_id = animals.id 
+      INNER JOIN types ON products.type_id = types.id`
+    );
+    res.send(products.rows);
+    return next();
+  } catch (err) {
+    console.log(err.stack)
+  }
+});
+
+server.post('/adminize/types', async (req, res, next) => {
+  try {
+    const types = await pool.query(`SELECT id AS typeID, name AS typeName FROM types`);
+    res.send(types.rows);
     return next();
   } catch (err) {
     console.log(err.stack)
