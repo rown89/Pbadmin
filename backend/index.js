@@ -51,15 +51,21 @@ server.post('/adminize/addBrand', async (req, res, next) => {
 });
 
 server.post('/adminize/addProducts', async (req, res, next) => {
+  const {name} = req.body;
+  const {puppy} = req.body;
+  const {cereal} = req.body;
+  const {weight} = req.body;
+  const {description} = req.body;
+  const {image} = req.body;
+  const {brandID} = req.body;
+  const {animalID} = req.body;
+  const {dietID} = req.body;
+  const {typeID} = req.body;
   try {
     const products = await pool.query(
-      `INSERT INTO products(
-        name, is_puppy, is_cereal_free, weight, description, image, brand_id, animal_id, diet_id, type_id
-      ) VALUES (
-        '${req.body.name}', '${req.body.puppy}', '${req.body.cereal}', '${req.body.weight}', '${req.body.description}', '${req.body.image}, '${req.body.brandID}', '${req.body.animalID}', '${req.body.dietID}', '${req.body.dietID}'
-      )`
+      `INSERT INTO products(name, is_puppy, is_cereal_free, weight, description, image, brand_id, animal_id, diet_id, type_id) VALUES ('${name}', '${puppy}', '${cereal}', '${weight}', '${description}', '${image}', '${brandID}', '${animalID}', '${dietID}', '${typeID}')`
     );
-    res.send({msg: 'added'});
+    res.send({msg: 'products added'});
     return next();
   } catch (err) {
     console.log(err.stack)
